@@ -1,0 +1,1343 @@
+﻿<ManuScript>
+  <properties manuscriptID="Carrier_RateMaster_PersonalAuto_1_0_0_0" versionID="Carrier_RateMaster_PersonalAuto_1_0_0_0" versionDate="2024-09-19" version="1" boolean="1" fieldCache="1" shortCircuitCond="1" cultureCode="en-US" cultureName="English (United States)" iterateNonexistentParentContextErrorLevel="1" caption="Carrier RateMaster PersonalAuto 1.0.0.0" inherited="DCU_PAUTO_MO_VM_3_0_0_0_Master" image="" usePersistedState="0" dataSchema="">
+    <keys>
+      <keyInfo name="family" value="DCUTraining" />
+      <keyInfo name="lob" value="PAUTO" />
+      <keyInfo name="state" value="MO" />
+      <keyInfo name="version" value="1.0.0.0" />
+      <keyInfo name="effectiveDateNew" value="2021-01-01" />
+      <keyInfo name="effectiveDateRenewal" value="2021-01-01" />
+      <keyInfo name="masterID" value="None" />
+      <keyInfo name="productCode" value="Pages" />
+      <keyInfo name="cultures" value="en-US" />
+      <keyInfo name="currencyCodes" value="USD" />
+      <keyInfo name="role" value="None" />
+      <keyInfo name="states" value="None" />
+      <keyInfo name="type" value="None" />
+    </keys>
+    <notes />
+    <contexts>
+      <context>Agent</context>
+      <context>Underwriter</context>
+    </contexts>
+  </properties>
+  <model defaultValue="data.SubmissionExecuteCheck">
+    <object id="data" abstract="1">
+      <object id="Account" abstract="1">
+        <object id="AccountInput" abstract="1">
+          <public id="AccountInput.DateOfBirth" path="DateOfBirth" type="date">
+            <definition>
+              <caption value="Date Of Birth" />
+              <maxLength idref="MaxLength.Date" />
+              <formatMask idref="FormatMask.Date" />
+            </definition>
+          </public>
+          <public id="AccountInput.InsuredName" path="InsuredName" type="string">
+            <definition>
+              <caption value="Insured Name" />
+              <required idref="True" />
+              <maxLength idref="MaxLength.InsuredName" />
+            </definition>
+            <rules>
+              <affects>
+                <reference idref="PersonInput.LastName" effect="onChange" />
+              </affects>
+            </rules>
+          </public>
+          <public id="AccountInput.Address2" path="address/Address2" type="string" override="1">
+            <definition>
+              <caption value="Address 2" />
+              <maxLength value="50" />
+            </definition>
+          </public>
+          <public id="AccountInput.City" path="address/City" type="string" override="1">
+            <definition>
+              <caption value="City" />
+              <maxLength idref="MaxLength.City" />
+              <required idref="True" />
+            </definition>
+          </public>
+          <public id="AccountInput.County" path="address/County" type="string" override="1">
+            <definition>
+              <caption value="County" />
+              <maxLength idref="MaxLength.County" />
+              <required idref="True" />
+              <options>
+                <option value="County1" caption="County 1" />
+                <option value="County2" caption="County 2" />
+                <option value="County3" caption="County 3" />
+                <option value="County4" caption="County 4" />
+              </options>
+              <formatMask idref="FormatMask.BlankOption" />
+            </definition>
+          </public>
+          <public id="AccountInput.State" path="address/State" type="string" override="1">
+            <definition>
+              <caption value="State" />
+              <maxLength idref="MaxLength.State" />
+              <options>
+                <option value="AK" caption="AK" />
+                <option value="AL" caption="AL" />
+                <option value="AR" caption="AR" />
+                <option value="AZ" caption="AZ" />
+                <option value="CA" caption="CA" />
+                <option value="CO" caption="CO" />
+                <option value="CT" caption="CT" />
+                <option value="DC" caption="DC" />
+                <option value="DE" caption="DE" />
+                <option value="FL" caption="FL" />
+                <option value="GA" caption="GA" />
+                <option value="HI" caption="HI" />
+                <option value="IA" caption="IA" />
+                <option value="ID" caption="ID" />
+                <option value="IL" caption="IL" />
+                <option value="IN" caption="IN" />
+                <option value="KS" caption="KS" />
+                <option value="KY" caption="KY" />
+                <option value="LA" caption="LA" />
+                <option value="MA" caption="MA" />
+                <option value="MD" caption="MD" />
+                <option value="ME" caption="ME" />
+                <option value="MI" caption="MI" />
+                <option value="MN" caption="MN" />
+                <option value="MO" caption="MO" />
+                <option value="MS" caption="MS" />
+                <option value="MT" caption="MT" />
+                <option value="NC" caption="NC" />
+                <option value="ND" caption="ND" />
+                <option value="NE" caption="NE" />
+                <option value="NH" caption="NH" />
+                <option value="NJ" caption="NJ" />
+                <option value="NM" caption="NM" />
+                <option value="NV" caption="NV" />
+                <option value="NY" caption="NY" />
+                <option value="OH" caption="OH" />
+                <option value="OK" caption="OK" />
+                <option value="OR" caption="OR" />
+                <option value="PA" caption="PA" />
+                <option value="RI" caption="RI" />
+                <option value="SC" caption="SC" />
+                <option value="SD" caption="SD" />
+                <option value="TN" caption="TN" />
+                <option value="TX" caption="TX" />
+                <option value="UT" caption="UT" />
+                <option value="VA" caption="VA" />
+                <option value="VT" caption="VT" />
+                <option value="WA" caption="WA" />
+                <option value="WI" caption="WI" />
+                <option value="WV" caption="WV" />
+                <option value="WY" caption="WY" />
+              </options>
+              <required value="1" />
+              <formatMask idref="FormatMask.BlankOption" />
+            </definition>
+          </public>
+          <public id="AccountInput.ZipCode" path="address/ZipCode" type="string" override="1">
+            <definition>
+              <caption value="Zip Code" />
+              <maxLength idref="MaxLength.Zip" />
+              <required idref="True" />
+              <formatMask idref="FormatMask.Zipcode" />
+            </definition>
+          </public>
+        </object>
+        <object id="AccountOutput" abstract="1">
+          <public id="AccountOutput.Territory" path="Territory" type="string">
+            <definition>
+              <caption value="Territory" />
+              <required idref="True" />
+              <readOnly idref="True" />
+              <maxLength idref="MaxLength.Territory" />
+            </definition>
+            <rules>
+              <misc>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="AccountInput.County" type="string" />
+                      <operand type="string" value="County1" />
+                    </comparison>
+                  </condition>
+                  <then value="001" />
+                </if>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="AccountInput.County" type="string" />
+                      <operand type="string" value="County2" />
+                    </comparison>
+                  </condition>
+                  <then value="003" />
+                </if>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="AccountInput.County" type="string" />
+                      <operand type="string" value="County3" />
+                    </comparison>
+                  </condition>
+                  <then value="004" />
+                </if>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="AccountInput.County" type="string" />
+                      <operand type="string" value="County4" />
+                    </comparison>
+                  </condition>
+                  <then value="005" />
+                </if>
+              </misc>
+              <value value="001" />
+            </rules>
+          </public>
+          <public id="AccountOutput.Country" path="Country" type="string">
+            <definition>
+              <caption value="Country" />
+              <maxLength idref="MaxLength.Country" />
+              <required idref="True" />
+              <readOnly idref="True" />
+            </definition>
+            <rules>
+              <default value="United States" />
+            </rules>
+          </public>
+        </object>
+        <object id="Person" abstract="1">
+          <object id="PersonInput" abstract="1">
+            <public id="PersonInput.LastName" path="LastName" type="string" override="1">
+              <definition>
+                <caption value="Last Name" />
+                <maxLength idref="MaxLength.LastName" />
+              </definition>
+              <rules>
+                <value idref="AccountInput.InsuredName" />
+              </rules>
+            </public>
+          </object>
+        </object>
+      </object>
+      <object id="Policy" abstract="1">
+        <object id="PolicyInput" abstract="1">
+          <public id="PolicyInput.EffectiveDate" path="EffectiveDate" type="date" override="1">
+            <definition>
+              <caption value="Effective Date" />
+              <maxLength idref="MaxLength.Date" />
+              <formatMask idref="FormatMask.Date" />
+              <required idref="True" />
+            </definition>
+            <rules>
+              <default idref="DateTime.CurrentDate" />
+            </rules>
+          </public>
+          <public id="PolicyInput.ExpirationDate" path="ExpirationDate" type="date" override="1">
+            <definition>
+              <caption value="Expiration Date" />
+              <maxLength idref="MaxLength.Date" />
+              <formatMask idref="FormatMask.Date" />
+              <required value="1" />
+            </definition>
+            <rules>
+              <default>
+                <dateAdd>
+                  <dateArgument idref="PolicyInput.EffectiveDate" />
+                  <dateUnit idref="PolicyPrivate.IsLeapYear" unit="days" />
+                </dateAdd>
+              </default>
+            </rules>
+          </public>
+          <public id="PolicyInput.WritingCompany" path="WritingCompany" type="string">
+            <definition>
+              <caption value="Writing Company" />
+              <options>
+                <option value="WC1" caption="WC1" />
+                <option value="WC2" caption="WC2" />
+                <option value="WC3" caption="WC3" />
+              </options>
+              <maxLength value="5" />
+              <required value="1" />
+              <formatMask idref="FormatMask.BlankOption" />
+            </definition>
+          </public>
+          <public id="PolicyInput.AffinityGroupID" path="AffinityGroupID" type="string">
+            <definition>
+              <caption value="Affinity Group ID" />
+              <maxLength value="10" />
+              <options>
+                <option value="Group1" caption="Group 1" />
+                <option value="Group2" caption="Group 2" />
+                <option value="None" caption="None" />
+              </options>
+              <formatMask idref="FormatMask.BlankOption" />
+            </definition>
+          </public>
+          <public id="PolicyInput.Military" path="Military" type="string">
+            <definition>
+              <caption value="Is Applicant in Military?" />
+              <maxLength value="5" />
+              <options>
+                <option value="Yes" caption="Yes" />
+                <option value="No" caption="No" />
+              </options>
+              <formatMask idref="FormatMask.BlankOption" />
+            </definition>
+          </public>
+          <public id="PolicyInput.OtherPolicy" path="OtherPolicy" type="string">
+            <definition>
+              <caption value="Do You have any other policy with this Company?" />
+              <options>
+                <option value="Yes" caption="Yes" />
+                <option value="No" caption="No" />
+              </options>
+              <maxLength value="5" />
+              <formatMask idref="FormatMask.BlankOption" />
+            </definition>
+          </public>
+          <public id="PolicyInput.Term" path="Term" type="string" override="1">
+            <definition>
+              <caption value="Term" />
+              <maxLength idref="MaxLength.iValue" />
+              <readOnly value="1" />
+            </definition>
+            <rules>
+              <default value="1.000" />
+            </rules>
+          </public>
+        </object>
+        <object id="Line" abstract="1">
+          <object id="Risk" path="risk" override="1">
+            <object id="RiskOutput" abstract="1">
+              <public id="RiskOutput.VehicleNumber" path="VehicleNumber" type="string" override="1">
+                <definition>
+                  <caption value="Vehicle #" />
+                  <readOnly idref="True" />
+                </definition>
+                <rules>
+                  <misc>
+                    <if>
+                      <condition>
+                        <comparison compare="eq">
+                          <operand idref="RiskPrivate.CurrentIteration" type="string" />
+                          <operand type="int" value="1" />
+                        </comparison>
+                      </condition>
+                      <then value="Vehicle #1" />
+                    </if>
+                    <if>
+                      <condition>
+                        <comparison compare="eq">
+                          <operand idref="RiskPrivate.CurrentIteration" type="string" />
+                          <operand type="int" value="2" />
+                        </comparison>
+                      </condition>
+                      <then value="Vehicle #2" />
+                    </if>
+                  </misc>
+                </rules>
+              </public>
+            </object>
+            <object id="RiskInput" abstract="1">
+              <public id="RiskInput.ModelYear" path="ModelYear" type="int" override="1">
+                <definition>
+                  <caption value="Vehicle Year" />
+                  <required idref="True" />
+                  <maxLength idref="MaxLength.Year" />
+                  <formatMask idref="FormatMask.BlankOption" />
+                  <options>
+                    <option value="2022" caption="2022" />
+                    <option value="2021" caption="2021" />
+                    <option value="2020" caption="2020" />
+                    <option value="2019" caption="2019" />
+                    <option value="2018" caption="2018" />
+                    <option value="2017" caption="2017" />
+                    <option value="2016" caption="2016" />
+                    <option value="2015" caption="2015" />
+                    <option value="2014" caption="2014" />
+                    <option value="2013" caption="2013" />
+                    <option value="2012" caption="2012" />
+                    <option value="2011" caption="2011" />
+                    <option value="2010" caption="2010" />
+                    <option value="2009" caption="2009" />
+                    <option value="2008" caption="2008" />
+                    <option value="2007" caption="2007" />
+                  </options>
+                </definition>
+              </public>
+              <public id="RiskInput.Usage" path="Usage" type="string" override="1">
+                <definition>
+                  <caption value="Vehicle Usage" />
+                  <maxLength value="50" />
+                  <formatMask idref="FormatMask.BlankOption" />
+                  <required idref="True" />
+                  <options>
+                    <option value="Pleasure" caption="Pleasure" />
+                    <option value="ToAndFromWork" caption="To And From Work" />
+                    <option value="Business" caption="Business" />
+                  </options>
+                </definition>
+              </public>
+              <public id="RiskInput.BISymbol" path="BISymbol" type="int">
+                <definition>
+                  <caption value="BI Symbol" />
+                  <maxLength value="5" />
+                  <formatMask idref="FormatMask.BlankOption" />
+                  <required idref="True" />
+                  <options>
+                    <option value="215" caption="215" />
+                    <option value="220" caption="220" />
+                    <option value="225" caption="225" />
+                    <option value="230" caption="230" />
+                  </options>
+                </definition>
+              </public>
+              <public id="RiskInput.DriverID" path="DriverID" type="string" override="1">
+                <definition>
+                  <caption value="Driver Assignment" />
+                  <maxLength value="100" />
+                  <formatMask idref="FormatMask.BlankOption" />
+                  <options codeRef="Driver" captionRef="DriverInput.FirstName" />
+                </definition>
+              </public>
+            </object>
+            <object id="RiskPrivate" abstract="1">
+              <private id="RiskPrivate.IsSecondVehicle" caption="" type="boolean">
+                <value>
+                  <comparison compare="eq">
+                    <operand idref="RiskPrivate.CountIteration" type="string" />
+                    <operand type="int" value="2" />
+                  </comparison>
+                </value>
+              </private>
+              <private id="RiskPrivate.CountIteration" caption="" type="string">
+                <value>
+                  <iterator type="string" scope="all" action="count" idref="Risk" />
+                </value>
+              </private>
+              <private id="RiskPrivate.IsFirstVehicle" caption="" type="boolean">
+                <value>
+                  <comparison compare="eq">
+                    <operand idref="RiskPrivate.CountIteration" type="string" />
+                    <operand type="int" value="1" />
+                  </comparison>
+                </value>
+              </private>
+              <private id="RiskPrivate.IsFirstDriver" caption="" type="boolean">
+                <value>
+                  <comparison compare="eq">
+                    <operand idref="RiskPrivate.CountIteration" type="string" />
+                    <operand type="int" value="1" />
+                  </comparison>
+                </value>
+              </private>
+              <private id="RiskPrivate.IsSecondDriver" caption="" type="boolean">
+                <value>
+                  <comparison compare="eq">
+                    <operand idref="RiskPrivate.CountIteration" type="string" />
+                    <operand type="int" value="2" />
+                  </comparison>
+                </value>
+              </private>
+            </object>
+            <object id="RiskCoverages" abstract="1">
+              <object id="BodilyInjury" abstract="1">
+                <object id="BodilyInjuryOutput" abstract="1">
+                  <public id="BodilyInjuryOutput.Premium" path="Premium" type="string" class="Premium" override="1">
+                    <definition>
+                      <caption value="Premium" />
+                      <maxLength value="15" />
+                      <readOnly idref="True" />
+                    </definition>
+                    <rules>
+                      <value idref="BodilyInjuryPrivate.TotalCalculatedPremium" />
+                    </rules>
+                  </public>
+                  <public id="BodilyInjuryOutput.PremiumWritten" path="written" type="float" override="1">
+                    <definition>
+                      <caption value="Written Premium" />
+                      <maxLength value="15" />
+                      <readOnly idref="True" />
+                    </definition>
+                    <rules>
+                      <value>
+                        <written useShared="1">
+                          <writtenRef idref="BodilyInjuryOutput.Premium" type="string" infoType="term" />
+                          <writtenInfo idref="WrittenPremiumSharedConfiguration.MinimumPremiumDefault" type="int" infoType="minimum" />
+                          <writtenInfo idref="WrittenPremiumSharedConfiguration.FullyEarnedDefault" type="boolean" infoType="fullyEarned" />
+                          <writtenInfo idref="WrittenPremiumSharedConfiguration.FlatChargeDefault" type="boolean" infoType="flatCharge" />
+                        </written>
+                      </value>
+                    </rules>
+                  </public>
+                  <public id="BodilyInjuryOutput.TestInUI" path="TestInUI" type="string">
+                    <definition>
+                      <caption value="Test In UI" />
+                    </definition>
+                    <rules>
+                      <value idref="BodilyInjuryPrivate.TotalCalculatedPremium" />
+                    </rules>
+                  </public>
+                </object>
+                <object id="BodilyInjuryPrivate" abstract="1">
+                  <private id="BodilyInjuryPrivate.Helper" type="string" comment="">
+                    <value>
+                      <calculation>
+                        <argument op="eq" idref="PolicyInput.WritingCompany" type="string" />
+                        <argument op="add" idref="AccountOutput.Territory" type="string" />
+                      </calculation>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.ProposedBaseRate" type="int" comment="">
+                    <value>
+                      <lookup>
+                        <tableRef value="BaseRate" />
+                        <fieldRef value="Proposed" />
+                        <onFailure value="0" />
+                        <keyRef idref="BodilyInjuryPrivate.Helper" type="string" name="Helper" />
+                      </lookup>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.IncreasedLimitFactor" caption="" type="float" override="1">
+                    <value>
+                      <lookup>
+                        <tableRef value="ILF" />
+                        <fieldRef value="Proposed" />
+                        <onFailure value="0" />
+                        <keyRef idref="BodilyInjuryInput.Limit" type="string" name="BILimit" />
+                      </lookup>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.AffinityDiscountFactor" caption="" type="float">
+                    <value>
+                      <lookup>
+                        <tableRef value="AffinityGroupDiscount" />
+                        <fieldRef value="Value" />
+                        <onFailure value="1" />
+                        <keyRef idref="PolicyInput.AffinityGroupID" type="string" name="key1" />
+                      </lookup>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.PrimaryClassFactor" caption="" type="float">
+                    <value>
+                      <lookup>
+                        <tableRef value="PrimaryClassFactor" />
+                        <fieldRef value="Proposed" />
+                        <onFailure value="0" />
+                        <keyRef idref="RiskInput.Usage" type="string" name="Description" />
+                      </lookup>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.LiablilitySymbolFactor" caption="" type="float">
+                    <value>
+                      <lookup>
+                        <tableRef value="LiablilitySymbol" />
+                        <fieldRef value="Rating Factor" />
+                        <onFailure value="0" />
+                        <keyRef idref="RiskInput.BISymbol" type="int" name="BI Symbol" />
+                      </lookup>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.VehicleAgeFactor" caption="" type="float">
+                    <value>
+                      <lookup>
+                        <tableRef value="VehicleAgeFactors" />
+                        <fieldRef value="Factor" />
+                        <onFailure value="0" />
+                        <keyRef idref="RiskInput.ModelYear" type="int" name="Model Year" />
+                      </lookup>
+                    </value>
+                  </private>
+                  <public id="BodilyInjuryPrivate.CalculatePremium" path="CalculatePremium" type="float" class="Premium">
+                    <definition>
+                      <caption value="Bodily Injury Private Calculate Premium" />
+                      <maxLength idref="MaxLength.Premium" />
+                      <formatMask idref="FormatMask.Premium" />
+                      <readOnly idref="True" />
+                    </definition>
+                    <rules>
+                      <value>
+                        <calculation>
+                          <argument op="eq" idref="BodilyInjuryPrivate.ProposedBaseRate" type="int" />
+                          <argument op="multiply" idref="BodilyInjuryPrivate.IncreasedLimitFactor" type="float" />
+                          <argument op="multiply" idref="BodilyInjuryPrivate.AffinityDiscountFactor" type="float" />
+                          <argument op="multiply" idref="DiscountOutput.MultiCarDiscount" type="float" />
+                          <argument op="multiply" idref="DiscountOutput.PackageDiscount" type="float" />
+                          <argument op="multiply" idref="BodilyInjuryPrivate.PrimaryClassFactor" type="float" />
+                          <argument op="multiply" idref="BodilyInjuryPrivate.LiablilitySymbolFactor" type="float" />
+                          <argument op="multiply" idref="BodilyInjuryPrivate.OneValue" type="int" />
+                          <argument op="multiply" idref="BodilyInjuryPrivate.VehicleAgeFactor" type="float" />
+                          <argument op="multiply" idref="DiscountOutput.PayFullDiscount" type="string" />
+                          <argument op="multiply" idref="DiscountPrivate.VetranMilitary" type="float" />
+                        </calculation>
+                      </value>
+                    </rules>
+                  </public>
+                  <private id="BodilyInjuryPrivate.TotalCalculatedPremium" caption="" type="int">
+                    <value>
+                      <iterator type="int" scope="all" action="sum" idref="Risk">
+                        <reference idref="BodilyInjuryPrivate.CalculatePremium" type="float" />
+                      </iterator>
+                    </value>
+                  </private>
+                  <private id="BodilyInjuryPrivate.OneValue" caption="" type="int">
+                    <value value="1" />
+                  </private>
+                </object>
+                <object id="BodilyInjuryInput" abstract="1">
+                  <public id="BodilyInjuryInput.Limit" path="Limit" type="string" override="1">
+                    <definition>
+                      <caption value="BI Limit" />
+                      <maxLength idref="MaxLength.sValue" />
+                      <formatMask idref="FormatMask.BlankOption" />
+                      <required idref="True" />
+                      <options idref="ILF" name="BILimit" />
+                    </definition>
+                  </public>
+                </object>
+              </object>
+            </object>
+            <minOccurs value="1" />
+            <maxOccurs value="2" />
+            <relationships>
+              <relationship>
+                <relatedObject idref="Driver" />
+                <foreignKey idref="RiskInput.DriverID" />
+              </relationship>
+            </relationships>
+          </object>
+          <object id="LineCoverages" abstract="1">
+            <object id="LineBodilyInjury" abstract="1">
+            </object>
+          </object>
+          <object id="Violation" abstract="1">
+            <object id="ViolationInput" abstract="1">
+            </object>
+          </object>
+          <object id="Driver" path="driver" override="1">
+            <object id="DriverInput" abstract="1">
+              <public id="DriverInput.FirstName" path="FirstName" type="string" override="1">
+                <definition>
+                  <caption value="Driver Name" />
+                  <required idref="True" />
+                  <readOnly idref="False" />
+                  <maxLength idref="MaxLength.InsuredName" />
+                </definition>
+              </public>
+              <public id="DriverInput.DriverLicenseStatus" path="DriverLicenseStatus" type="string">
+                <definition>
+                  <caption value="Driver License Status" />
+                  <maxLength idref="MaxLength.Value" />
+                  <formatMask idref="FormatMask.BlankOption" />
+                  <required idref="True" />
+                  <options>
+                    <option value="Active" caption="Active" />
+                    <option value="Expired" caption="Expired" />
+                  </options>
+                </definition>
+              </public>
+              <public id="DriverInput.DriversLicenseNumber" path="DriversLicenseNumber" type="string" override="1">
+                <definition>
+                  <caption value="License Number" />
+                  <maxLength value="25" />
+                  <required idref="True" />
+                </definition>
+              </public>
+              <public id="DriverInput.Gender" path="Gender" type="string" override="1">
+                <definition>
+                  <caption value="Gender" />
+                  <maxLength idref="MaxLength.Value" />
+                  <formatMask idref="FormatMask.BlankOption" />
+                  <options>
+                    <option value="Male" caption="Male" />
+                    <option value="Female" caption="Female" />
+                    <option value="Others" caption="Others" />
+                  </options>
+                </definition>
+              </public>
+              <public id="DriverInput.DateOfBirth" path="DateOfBirth" type="date" override="1">
+                <definition>
+                  <caption value="Date Of Birth" />
+                  <maxLength idref="MaxLength.Date" />
+                </definition>
+              </public>
+            </object>
+            <object id="DriverOutput" abstract="1">
+              <public id="DriverOutput.DriverNumber" path="DriverNumber" type="string">
+                <definition>
+                  <caption value="Driver #" />
+                  <readOnly idref="True" />
+                </definition>
+                <rules>
+                  <misc>
+                    <if>
+                      <condition>
+                        <comparison compare="eq">
+                          <operand idref="DriverPrivate.CurrentIteration" type="int" />
+                          <operand type="int" value="1" />
+                        </comparison>
+                      </condition>
+                      <then value="Driver #1" />
+                    </if>
+                    <if>
+                      <condition>
+                        <comparison compare="eq">
+                          <operand idref="DriverPrivate.CurrentIteration" type="int" />
+                          <operand type="int" value="2" />
+                        </comparison>
+                      </condition>
+                      <then value="Driver #2" />
+                    </if>
+                  </misc>
+                </rules>
+              </public>
+            </object>
+            <minOccurs value="1" />
+            <maxOccurs value="2" />
+            <object id="DriverPrivate" abstract="1">
+              <private id="DriverPrivate.IsDriverLicenseStatusNotActive" caption="" type="boolean">
+                <value>
+                  <comparison compare="isnot">
+                    <operand idref="DriverInput.DriverLicenseStatus" type="string" />
+                    <operand type="string" value="Active" />
+                  </comparison>
+                </value>
+              </private>
+              <private id="DriverPrivate.CurrentIteration" caption="" type="int">
+                <value>
+                  <iterator type="int" scope="all" action="current" idref="Driver" />
+                </value>
+              </private>
+            </object>
+          </object>
+        </object>
+        <object id="PolicyPrivate" abstract="1">
+          <private id="PolicyPrivate.DivBy400" caption="" type="int">
+            <value>
+              <calculation>
+                <argument op="eq" idref="DateTime.ThisYear" type="int" />
+                <argument op="mod" type="int" value="400" />
+              </calculation>
+            </value>
+          </private>
+          <private id="PolicyPrivate.DivBy100" caption="" type="int">
+            <value>
+              <calculation>
+                <argument op="eq" idref="DateTime.ThisYear" type="int" />
+                <argument op="mod" type="int" value="100" />
+              </calculation>
+            </value>
+          </private>
+          <private id="PolicyPrivate.DivBy4" caption="" type="int">
+            <value>
+              <calculation>
+                <argument op="eq" idref="DateTime.ThisYear" type="int" />
+                <argument op="mod" type="int" value="4" />
+              </calculation>
+            </value>
+          </private>
+          <private id="PolicyPrivate.IsLeapYear" caption="" type="int">
+            <value>
+              <if>
+                <condition>
+                  <comparison compare="and">
+                    <comparison compare="or">
+                      <comparison compare="eq">
+                        <operand idref="PolicyPrivate.DivBy400" type="int" />
+                        <operand type="int" value="0" />
+                      </comparison>
+                      <comparison compare="isnot">
+                        <operand idref="PolicyPrivate.DivBy100" type="int" />
+                        <operand type="int" value="0" />
+                      </comparison>
+                    </comparison>
+                    <comparison compare="eq">
+                      <operand idref="PolicyPrivate.DivBy4" type="int" />
+                      <operand type="int" value="0" />
+                    </comparison>
+                  </comparison>
+                </condition>
+                <then value="366" />
+                <else value="365" />
+              </if>
+            </value>
+          </private>
+        </object>
+      </object>
+      <object id="Discount" path="discount">
+        <minOccurs value="1" />
+        <maxOccurs value="1" />
+        <object id="DiscountInput">
+          <minOccurs value="1" />
+          <maxOccurs value="1" />
+        </object>
+        <object id="DiscountOutput">
+          <minOccurs value="1" />
+          <maxOccurs value="1" />
+          <public id="DiscountOutput.PackageDiscount" path="PackageDiscount" type="float">
+            <definition>
+              <caption value="Package Discount" />
+              <maxLength idref="MaxLength.sValue" />
+              <readOnly value="1" />
+            </definition>
+            <rules>
+              <value>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="PolicyInput.OtherPolicy" type="string" />
+                      <operand type="string" value="Yes" />
+                    </comparison>
+                  </condition>
+                  <then value="0.9" />
+                  <else value="1" />
+                </if>
+              </value>
+            </rules>
+          </public>
+          <public id="DiscountOutput.SafeDriverDiscount" path="SafeDriverDiscount" type="float">
+            <definition>
+              <caption value="Safe Driver Discount" />
+              <maxLength idref="MaxLength.sValue" />
+              <readOnly value="1" />
+            </definition>
+            <rules>
+              <value>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="data.ViolationStatus" type="string" />
+                      <operand type="string" value="Yes" />
+                    </comparison>
+                  </condition>
+                  <then value="1" />
+                  <else value="0.7" />
+                </if>
+              </value>
+            </rules>
+          </public>
+          <public id="DiscountOutput.PayFullDiscount" path="PayFullDiscount" type="string">
+            <definition>
+              <caption value="Pay In Full Discount" />
+              <maxLength idref="MaxLength.sValue" />
+              <readOnly value="1" />
+            </definition>
+            <rules>
+              <value>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="data.PayFull" type="string" />
+                      <operand type="string" value="Yes" />
+                    </comparison>
+                  </condition>
+                  <then value="0.5" />
+                  <else value="1" />
+                </if>
+              </value>
+            </rules>
+          </public>
+          <public id="DiscountOutput.MultiCarDiscount" path="MultiCarDiscount" type="float">
+            <definition>
+              <caption value="Multi-Car Discount" />
+              <maxLength idref="MaxLength.sValue" />
+              <readOnly value="1" />
+            </definition>
+            <rules>
+              <value>
+                <if>
+                  <condition>
+                    <comparison compare="eq">
+                      <operand idref="RiskPrivate.CountIteration" type="string" />
+                      <operand type="int" value="1" />
+                    </comparison>
+                  </condition>
+                  <then value="1" />
+                  <else value="0.88" />
+                </if>
+              </value>
+            </rules>
+          </public>
+          <public id="DiscountOutput.AffinityDiscount" path="AffinityDiscount" type="string">
+            <definition>
+              <caption value="Affinity Discount" />
+              <maxLength idref="MaxLength.sValue" />
+              <readOnly value="1" />
+            </definition>
+            <rules>
+              <value>
+                <lookup>
+                  <tableRef value="AffinityGroupDiscount" />
+                  <fieldRef value="Value" />
+                  <keyRef idref="PolicyInput.AffinityGroupID" type="string" name="key1" />
+                </lookup>
+              </value>
+            </rules>
+          </public>
+        </object>
+        <object id="DiscountPrivate">
+          <minOccurs value="1" />
+          <maxOccurs value="1" />
+          <private id="DiscountPrivate.NotHaveOtherPolicy" caption="" type="boolean">
+            <value>
+              <comparison compare="or">
+                <comparison compare="eq">
+                  <operand idref="PolicyInput.OtherPolicy" type="string" />
+                  <operand type="string" value="" />
+                </comparison>
+                <comparison compare="eq">
+                  <operand idref="PolicyInput.OtherPolicy" type="string" />
+                  <operand type="string" value="No" />
+                </comparison>
+              </comparison>
+            </value>
+          </private>
+          <private id="DiscountPrivate.NotHaveViolation" caption="" type="boolean">
+            <value>
+              <comparison compare="or">
+                <comparison compare="eq">
+                  <operand idref="data.ViolationStatus" type="string" />
+                  <operand type="string" value="" />
+                </comparison>
+                <comparison compare="eq">
+                  <operand idref="data.ViolationStatus" type="string" />
+                  <operand type="string" value="No" />
+                </comparison>
+              </comparison>
+            </value>
+          </private>
+          <private id="DiscountPrivate.NotHavePayInFull" caption="" type="boolean">
+            <value>
+              <comparison compare="or">
+                <comparison compare="eq">
+                  <operand idref="data.PayFull" type="string" />
+                  <operand type="string" value="" />
+                </comparison>
+                <comparison compare="eq">
+                  <operand idref="data.PayFull" type="string" />
+                  <operand type="string" value="No" />
+                </comparison>
+              </comparison>
+            </value>
+          </private>
+          <private id="DiscountPrivate.NotAffinityNone" caption="" type="boolean">
+            <value>
+              <comparison compare="eq">
+                <operand idref="PolicyInput.AffinityGroupID" type="string" />
+                <operand type="string" value="None" />
+              </comparison>
+            </value>
+          </private>
+          <private id="DiscountPrivate.NotTwoVehicles" caption="" type="boolean">
+            <value>
+              <comparison compare="lt">
+                <operand idref="RiskPrivate.CountIteration" type="string" />
+                <operand type="int" value="2" />
+              </comparison>
+            </value>
+          </private>
+          <private id="DiscountPrivate.VetranMilitary" caption="" type="float">
+            <value>
+              <if>
+                <condition>
+                  <comparison compare="eq">
+                    <operand idref="PolicyInput.Military" type="string" />
+                    <operand type="string" value="Yes" />
+                  </comparison>
+                </condition>
+                <then value="0.75" />
+                <else value="1" />
+              </if>
+            </value>
+          </private>
+        </object>
+      </object>
+      <public id="data.PayFull" path="PayFull" type="string">
+        <definition>
+          <caption value="Pay Full" />
+          <required idref="True" />
+          <formatMask idref="FormatMask.BlankOption" />
+          <maxLength value="5" />
+          <options>
+            <option value="Yes" caption="Yes" />
+            <option value="No" caption="No" />
+          </options>
+        </definition>
+      </public>
+      <public id="data.ViolationStatus" path="ViolationStatus" type="string">
+        <definition>
+          <caption value="Any at-fault violation in last 3 years?" />
+          <formatMask idref="FormatMask.BlankOption" />
+          <maxLength value="5" />
+          <options>
+            <option value="Yes" caption="Yes" />
+            <option value="No" caption="No" />
+          </options>
+        </definition>
+      </public>
+      <table id="BaseRate" tableType="local" separator=",">
+        <fields>
+          <field type="int" name="Company" />
+          <field type="int" name="Territory" />
+          <field type="int" name="Proposed" />
+        </fields>
+        <rowKeys name="Helper" type="int" find="eq">
+          <key value="WC1001" caption="" />
+          <key value="WC1003" caption="" />
+          <key value="WC1004" caption="" />
+          <key value="WC1005" caption="" />
+          <key value="WC2001" caption="" />
+          <key value="WC2003" caption="" />
+          <key value="WC2004" caption="" />
+          <key value="WC2005" caption="" />
+          <key value="WC3001" caption="" />
+          <key value="WC3003" caption="" />
+          <key value="WC3004" caption="" />
+          <key value="WC3005" caption="" />
+        </rowKeys>
+        <data>
+          <row value="WC1,001,210" />
+          <row value="WC1,003,155" />
+          <row value="WC1,004,125" />
+          <row value="WC1,005,162" />
+          <row value="WC2,001,270" />
+          <row value="WC2,003,197" />
+          <row value="WC2,004,161" />
+          <row value="WC2,005,207" />
+          <row value="WC3,001,311" />
+          <row value="WC3,003,227" />
+          <row value="WC3,004,185" />
+          <row value="WC3,005,238" />
+        </data>
+      </table>
+      <table id="ILF" tableType="local" separator=",">
+        <fields>
+          <field type="int" name="Proposed" />
+        </fields>
+        <rowKeys name="BILimit" type="float" find="eq">
+          <key value="20000/40000" caption="" />
+          <key value="50000/100000" caption="" />
+          <key value="75000/75000" caption="" />
+          <key value="100000/100000" caption="" />
+          <key value="100000/300000" caption="" />
+          <key value="200000/200000" caption="" />
+          <key value="200000/400000" caption="" />
+          <key value="300000/300000" caption="" />
+          <key value="300000/600000" caption="" />
+          <key value="500000/500000" caption="" />
+        </rowKeys>
+        <data>
+          <row value="1" />
+          <row value="1.32" />
+          <row value="1.32" />
+          <row value="1.45" />
+          <row value="1.61" />
+          <row value="1.62" />
+          <row value="1.64" />
+          <row value="1.65" />
+          <row value="1.9" />
+          <row value="1.97" />
+        </data>
+      </table>
+      <table id="AffinityGroupDiscount" tableType="local" separator=",">
+        <fields>
+          <field type="int" name="Value" />
+        </fields>
+        <rowKeys name="key1" type="float" find="eq">
+          <key value="Group1" caption="" />
+          <key value="Group2" caption="" />
+          <key value="None" default="1" caption="" />
+        </rowKeys>
+        <data>
+          <row value="0.75" />
+          <row value="0.9" />
+          <row value="1" />
+        </data>
+      </table>
+      <table id="PrimaryClassFactor" tableType="local" separator=",">
+        <fields>
+          <field type="int" name="Proposed" />
+        </fields>
+        <rowKeys name="Description" type="float" find="eq">
+          <key value="Pleasure" caption="" />
+          <key value="ToAndFromWork" caption="" />
+          <key value="Business" caption="" />
+        </rowKeys>
+        <data>
+          <row value="1" />
+          <row value="1.1" />
+          <row value="1.35" />
+        </data>
+      </table>
+      <table id="LiablilitySymbol" tableType="local" separator=",">
+        <fields>
+          <field type="int" name="Rating Factor" />
+        </fields>
+        <rowKeys name="BI Symbol" type="float" find="eq">
+          <key value="215" caption="" />
+          <key value="220" caption="" />
+          <key value="225" caption="" />
+          <key value="230" caption="" />
+        </rowKeys>
+        <data>
+          <row value="0.15" />
+          <row value="0.2" />
+          <row value="0.25" />
+          <row value="0.3" />
+        </data>
+      </table>
+      <table id="VehicleAgeFactors" tableType="local" separator="," override="1">
+        <fields>
+          <field type="int" name="Factor" />
+        </fields>
+        <rowKeys name="Model Year" type="float" find="range">
+          <key value="2022" caption="" />
+          <key value="2021" caption="" />
+          <key value="2020" caption="" />
+          <key value="2019" caption="" />
+          <key value="2018" caption="" />
+          <key value="2017" caption="" />
+          <key value="2016" caption="" />
+          <key value="2015" caption="" />
+          <key value="2014" caption="" />
+          <key value="2013" caption="" />
+          <key value="2012" caption="" />
+          <key value="2011" caption="" />
+          <key value="2010" caption="" />
+          <key value="2009" caption="" />
+          <key value="2008" caption="" />
+          <key value="2007" caption="" />
+        </rowKeys>
+        <data>
+          <row value="1.05" />
+          <row value="1.04" />
+          <row value="1.03" />
+          <row value="1.02" />
+          <row value="1.01" />
+          <row value="1" />
+          <row value="0.99" />
+          <row value="0.98" />
+          <row value="0.97" />
+          <row value="0.96" />
+          <row value="0.95" />
+          <row value="0.94" />
+          <row value="0.93" />
+          <row value="0.92" />
+          <row value="0.91" />
+          <row value="0.9" />
+        </data>
+      </table>
+    </object>
+    <object id="System" abstract="1">
+      <object id="Constants" abstract="1">
+        <object id="MaxLength" abstract="1">
+          <private id="MaxLength.InsuredName" caption="" type="int">
+            <value value="100" />
+          </private>
+          <private id="MaxLength.Date" caption="" type="int" override="1">
+            <value value="15" />
+          </private>
+          <private id="MaxLength.Address" type="int" override="1">
+            <value value="100" />
+          </private>
+          <private id="MaxLength.City" type="int" override="1">
+            <value value="20" />
+          </private>
+          <private id="MaxLength.County" type="int" override="1">
+            <value value="10" />
+          </private>
+          <private id="MaxLength.Territory" caption="" type="int">
+            <value value="2" />
+          </private>
+          <private id="MaxLength.Country" caption="" type="int">
+            <value value="20" />
+          </private>
+          <private id="MaxLength.Zip" type="int" override="1">
+            <value value="5" />
+          </private>
+          <private id="MaxLength.iValue" caption="" type="int" override="1">
+            <value value="5" />
+          </private>
+          <private id="MaxLength.sValue" caption="" type="int" override="1">
+            <value value="30" />
+          </private>
+        </object>
+        <object id="FormatMask" abstract="1">
+        </object>
+      </object>
+      <object id="DateTime" abstract="1">
+      </object>
+    </object>
+  </model>
+  <topics>
+    <topic name="MainInterview" abstract="1">
+      <page name="RateSummary" caption="Pricing" pageVersion="2" idref="data.SubmissionExecute" override="1" prevPage="Coverages">
+        <group object="data" iterMax="*" iterStep="1">
+          <section direction="down" captionPosition="before" showCaption="repeat" caption="Premium">
+            <reference idref="BodilyInjuryOutput.Premium" compute="1" />
+            <reference idref="BodilyInjuryOutput.PremiumWritten" compute="1" />
+            <reference idref="data.PayFull" onBlur="1" />
+          </section>
+        </group>
+        <nameValues />
+        <group iterMax="*" iterStep="1" object="data">
+          <section direction="down" captionPosition="before" showCaption="repeat" caption="Discount">
+            <reference idref="DiscountOutput.PackageDiscount" compute="1">
+              <nameValues>
+                <nameValue idref="DiscountPrivate.NotHaveOtherPolicy" name="eliminate" />
+              </nameValues>
+            </reference>
+            <reference idref="DiscountOutput.PayFullDiscount" compute="1">
+              <nameValues>
+                <nameValue idref="DiscountPrivate.NotHavePayInFull" name="eliminate" />
+              </nameValues>
+            </reference>
+            <reference idref="DiscountOutput.MultiCarDiscount" compute="1">
+              <nameValues>
+                <nameValue idref="DiscountPrivate.NotTwoVehicles" name="eliminate" />
+              </nameValues>
+            </reference>
+            <reference idref="DiscountOutput.AffinityDiscount" compute="1">
+              <nameValues>
+                <nameValue idref="DiscountPrivate.NotAffinityNone" name="eliminate" />
+              </nameValues>
+            </reference>
+          </section>
+        </group>
+      </page>
+      <page name="PolicyInfo" caption="Policy Info" pageVersion="2" prevPage="Account">
+        <group object="data" iterMax="*" iterStep="1">
+          <section direction="down" captionPosition="before" showCaption="repeat">
+            <reference idref="PolicyInput.EffectiveDate" onBlur="1" />
+            <reference idref="PolicyInput.ExpirationDate" onBlur="1" />
+            <reference idref="PolicyInput.Term" />
+            <reference idref="PolicyInput.WritingCompany" onBlur="1" />
+            <reference idref="PolicyInput.AffinityGroupID" onBlur="1" />
+            <reference idref="PolicyInput.Military" onBlur="1" />
+            <reference idref="PolicyInput.OtherPolicy" onBlur="1" />
+          </section>
+        </group>
+      </page>
+      <page name="Account" caption="Applicant" pageVersion="2" override="1" prevPage="">
+        <group object="data" iterMax="*" iterStep="1">
+          <section direction="down" captionPosition="before" showCaption="repeat">
+            <section direction="down" captionPosition="before" showCaption="repeat" caption="Applicant Information" capClass="x_Width105">
+              <reference idref="AccountInput.InsuredName" compute="1" />
+              <reference idref="AccountInput.DateOfBirth" />
+              <reference idref="AccountInput.Address1" />
+              <reference idref="AccountInput.Address2" />
+              <reference idref="AccountInput.City" />
+              <reference idref="AccountInput.County" />
+              <reference idref="AccountOutput.Territory" compute="1" />
+              <reference idref="AccountInput.State" />
+              <reference idref="AccountOutput.Country" onBlur="1" />
+              <reference idref="AccountInput.ZipCode" onBlur="1" hoverHelp="1" />
+            </section>
+          </section>
+        </group>
+      </page>
+      <page name="VehicleSelection" caption="Coverages" pageVersion="2" override="1" prevPage="DriversAndViolations">
+        <group object="Risk" iterStep="1" iterMax="2">
+          <section direction="down" captionPosition="before" showCaption="repeat">
+            <section direction="down" captionPosition="before" showCaption="repeat" class="x_BorderBottom" capClass="x_Width100">
+              <reference idref="RiskOutput.VehicleNumber" compute="1" />
+              <reference idref="RiskInput.ModelYear" onBlur="1" />
+              <reference idref="RiskInput.Usage" onBlur="1" />
+              <reference idref="RiskInput.BISymbol" onBlur="1" />
+              <reference idref="BodilyInjuryInput.Limit" onBlur="1" />
+              <reference idref="RiskInput.DriverID" onBlur="1" />
+              <action command="delete" caption="Delete Vehicle">
+                <nameValues />
+              </action>
+            </section>
+          </section>
+          <action command="add" caption="Add Vehicle">
+            <nameValues />
+          </action>
+        </group>
+        <group iterMax="*" iterStep="1" object="data">
+          <tableLayout direction="down" captionPosition="before" showCaption="once">
+            <reference idref="data.ViolationStatus" onBlur="1">
+              <nameValues>
+                <nameValue idref="True" name="eliminate" />
+              </nameValues>
+            </reference>
+          </tableLayout>
+        </group>
+      </page>
+      <page name="Coverages" caption="Coverages" pageVersion="2" validRef="False" override="1" prevPage="VehicleSelection">
+        <group object="Line" iterMax="*" iterStep="1">
+          <section direction="across" captionPosition="above" showCaption="repeat">
+            <reference idref="LineBodilyInjury.Limit" onBlur="1" />
+            <reference idref="LinePropertyDamage.Limit" />
+            <reference idref="LineMedicalPayments.Limit" />
+            <reference idref="LineUninsuredMotorist.Limit" />
+            <reference idref="LineUnderinsuredMotorist.Limit" />
+          </section>
+        </group>
+        <group iterStep="1" object="Risk" iterMax="2">
+          <section direction="down" captionPosition="before" showCaption="repeat">
+            <section direction="down" captionPosition="before" showCaption="repeat" class="x_BorderLightGray x_Width350 x_MarginRight5 x_FloatLeft" capClass="x_Width150">
+              <reference idref="RiskOutput.YearMakeModel" compute="1" />
+              <reference idref="RiskOutput.Symbol" compute="1" />
+              <reference idref="RiskInput.DriverID" />
+              <reference idref="RiskInput.Performance" />
+              <reference idref="RiskInput.Usage" onBlur="1" />
+              <reference idref="RiskInput.MilesToWork" />
+              <reference idref="RiskInput.OperatorType" />
+              <reference idref="GaragingAddress.County" compute="1" />
+              <reference idref="OtherThanCollisionInput.Deductible" />
+              <reference idref="CollisionInput.Deductible" />
+              <reference idref="RentalInput.Limit" />
+              <reference idref="TowingInput.Limit" />
+            </section>
+          </section>
+        </group>
+      </page>
+      <page name="DriversAndViolations" caption="Driver" pageVersion="2" override="1" prevPage="PolicyInfo">
+        <group iterMax="*" iterStep="1" object="Driver">
+          <section direction="down" captionPosition="before" showCaption="repeat">
+            <section direction="down" captionPosition="before" showCaption="repeat" class="x_BorderBottom">
+              <reference idref="DriverOutput.DriverNumber" compute="1" />
+              <reference idref="DriverInput.FirstName" onBlur="1" />
+              <reference idref="DriverInput.DateOfBirth" onBlur="1" />
+              <reference idref="DriverInput.Gender" onBlur="1" />
+              <reference idref="DriverInput.DriverLicenseStatus" onBlur="1" />
+              <reference idref="DriverInput.DriversLicenseNumber">
+                <nameValues>
+                  <nameValue idref="DriverPrivate.IsDriverLicenseStatusNotActive" name="eliminate" />
+                </nameValues>
+              </reference>
+              <action command="delete" caption="Delete Driver">
+                <nameValues />
+              </action>
+              <nameValues>
+                <nameValue value="Driver Information" name="toggleCaption" />
+              </nameValues>
+            </section>
+          </section>
+          <action command="add" caption="Add Driver" />
+        </group>
+      </page>
+    </topic>
+    <topic name="DriverDetail" abstract="1">
+      <page name="DriverDetail" caption="Driver Detail" pageVersion="2" override="1">
+        <group object="Driver" iterMax="*" iterStep="1">
+          <section direction="down" captionPosition="before" showCaption="repeat">
+            <reference idref="DriverInput.FirstName" />
+            <reference idref="DriverInput.LastName" />
+            <reference idref="DriverInput.DateOfBirth" />
+            <reference idref="DriverInput.LicenseDate" />
+            <reference idref="DriverInput.Gender" />
+            <reference idref="DriverInput.MaritalStatus" />
+            <reference idref="DriverInput.LicenseNumber" />
+          </section>
+          <action command="goto" caption="OK" pageRef="DriversAndViolations" topic="MainInterview">
+            <nameValues>
+              <nameValue value="2" name="popUp" />
+            </nameValues>
+          </action>
+        </group>
+      </page>
+    </topic>
+  </topics>
+  <annotations />
+</ManuScript>

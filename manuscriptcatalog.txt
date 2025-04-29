@@ -1,0 +1,4 @@
+carrier ratemaster ka path = C:\DuckCreek\POLICY\ManuScripts\DCUTraining\PAUTO\MO
+
+
+<entry ID="Carrier_RateMaster_PersonalAuto_1_0_0_0" description="Carrier RateMaster PersonalAuto 1.0.0.0" versionDate="2024-09-19" versionID="Carrier_RateMaster_PersonalAuto_1_0_0_0" status="ok" url="DCUTraining\PAUTO\MO\Carrier_RateMaster_PersonalAuto_1_0_0_0.xml" family="DCUTraining" lob="PAUTO" state="MO" version="1.0.0.0" effectiveDateNew="2021-01-01" effectiveDateRenewal="2021-01-01" masterID="None" productCode="Pages,ViewModel" cultures="en-US" currencyCodes="USD" role="None" states="None" type="None" />
